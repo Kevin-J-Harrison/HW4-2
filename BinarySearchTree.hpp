@@ -220,15 +220,27 @@ private:
         if(t == nullptr) {
             return;
         }
-        if(t->left != nullptr) {
+        if(t->data > k1 && t->left != nullptr) {
             _get_range(k1, k2, t->left, result);
         }
         if(t->data >= k1 && t->data <= k2) {
             result.push_back(t->data);
         }
-        if(t->right != nullptr) {
+        if(t->data < k2 && t->right != nullptr) {
             _get_range(k1, k2, t->right, result);
         }
+//        if(t == nullptr)return;
+//        if(k1 > t->data){ /*therangeisentirelywithintheRIGHTsubtree*/
+//             _get_range(k1, k2, t->right, result);
+//        }
+//        else if(k2 < t->data){/*therangeisentirelyintheLEFT*/
+//             _get_range(k1, k2, t->left, result);
+//        }
+//        else{
+//            _get_range(k1, t->data, t->left, result);
+//             result.push_back(t->data); /*in-orderinsert*/
+//            _get_range(t->data, k2, t->right, result);
+//        }
     }
 
     void _remove_leaves(gv_node *& t, std::set<T> & col) const {
